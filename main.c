@@ -4,17 +4,12 @@
 typedef struct context
         t_context;
 
-void cb_sink(void *context, uint32_t volume, bool mute) {
-    printf("sink cb: v %d, m %d\n", volume, mute);
-}
-
-void cb_source(void *context, uint32_t volume, bool mute) {
-    printf("source cb: v %d, m %d\n", volume, mute);
-}
-
 int main() {
     t_context *ctx = NULL;
 
-    run(100000000, NULL, NULL, ctx, cb_sink, cb_source);
+    // tick in nanosecond, change the sink and source name by the ones you want to use
+    run(100000000, "alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.analog-stereo",
+        "alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.analog-stereo.monitor",
+        ctx);
     return 0;
 }
